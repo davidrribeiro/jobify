@@ -1,0 +1,17 @@
+.bg-jobify {
+    background-color: #5c0970;
+}
+.navbar-brand img {
+    width: 100%;
+    max-width: 150px;    
+}
+.navbar-nav .nav-item , a.nav-link{
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.navbar-nav .nav-item , a.nav-link{
+    color: #fff;
+}
+.navbar-nav .nav-item , a.nav-link:hover{
+    color:#f1a419;
+}
