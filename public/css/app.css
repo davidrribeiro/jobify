@@ -1,3 +1,7 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 .bg-jobify {
     background-color: #5c0970;
 }
@@ -15,3 +19,25 @@
 .navbar-nav .nav-item , a.nav-link:hover{
     color:#f1a419;
 }
+.list-roles{
+    margin: 50px 0
+}
+.list-roles ul{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+.list-roles li{
+    list-style: none;
+    grid-template-rows: 1fr;
+    background: #ececec;
+    box-shadow: 0px 3px 6px #ccc;
+    padding: 20px;    
+}
+.list-roles li h4 {
+    font-weight: 700;
+    font-size: 18px;
+}
+.list-roles li p > span{
+    font-weight: 700;
+}
+
