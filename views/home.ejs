@@ -19,8 +19,8 @@
             <ul>
                 <% categoria.vagas.forEach( vaga => { %>
                     <li>
-                        <h4><a href="vaga"><%- vaga.title %></a></h4>
-                        <p><span>Desejável:</span> <%- vaga.description %></p>
+                        <h4><a href="vaga/<%- vaga.id %>"><%- vaga.titulo %></a></h4>
+                        <p><span>Detalhes:</span> <%- vaga.descricao %></p>
                     </li>
                 <% }) %>
 

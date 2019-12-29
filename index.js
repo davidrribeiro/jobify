@@ -21,20 +21,24 @@ app.get('/', async (request, response) => {
         categorias
     })
 })
-app.get('/vaga', (request, response) => {
-   
-    response.render('vaga')
+app.get('/vaga/:id', async (request, response) => {   
+    const db = await dbConnection
+    const vaga = await db.get('select * from vagas where id =' + request.params.id)
+    
+    response.render('vaga', {
+        vaga
+    })
 })
 
 const init = async() => {
     const db = await dbConnection
     await db.run('create table if not exists categorias(id INTEGER PRIMARY KEY, categoria TEXT);')
-    await db.run('create table if not exists vagas(id INTEGER PRIMARY KEY, title TEXT, description TEXT);')
-    // const categoria = 'Marketing Team'
-    // await db.run(`insert into categorias(categoria) values('${categoria}')`)   
-    // const vaga = 'Marketing Digital'
-    // const description = 'Experiência em marketing'
-    // await db.run(`insert into vagas(title, description) values(2,'${vaga}, ${description}')`)    
+    await db.run('create table if not exists vagas(id INTEGER PRIMARY KEY, categoria INTERGER, titulo TEXT, descricao TEXT);')
+    //const categoria = 'Marketing team'
+    //await db.run(`insert into categorias(categoria) values('${categoria}')`)   
+    //const vaga = 'Marketing Digital (San Francisco)'
+    //const descricao = 'Vaga para Social Media'
+    //await db.run(`insert into vagas(categoria, titulo, descricao) values(2, '${vaga}', '${descricao}')`)    
 
 }
 init()
