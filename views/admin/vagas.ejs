@@ -20,16 +20,10 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-6">
-          <div class="card">
-            <!-- <div class="card-header border-0">
-              <div class="d-flex justify-content-between">
-                <h3 class="card-title text-bold">Vagas</h3>
-              </div>
-            </div> -->
+          <div class="card">          
             <div class="card-body">
               <div class="d-flex">
-                <div class="d-flex flex-column">
-                    
+                <div class="d-flex flex-column">                    
                         <div class="card-body table-responsive p-0">
                             <table class="table table-striped table-valign-middle">
                               <thead>
@@ -64,9 +58,24 @@
             </div>
           </div>
         </div> 
+        <div class="col-lg-6">
+            <div class="card">          
+                <div class="card-body">
+                  <div class="d-flex">
+                    <div class="d-flex flex-column">
+                        <p>Para adicionar nova vaga no sistema, clique no botão 
+                            abaixo para preencher o formulário :)</p>                    
+                        <a href="/admin/vagas/nova" class="btn btn-success btn-lg btn-block"> 
+                            <i class="fas fa-plus-square"></i> Adicionar vaga</a>
+                        
+                    </div>                  
+                  </div>             
+                </div>
+              </div>
+        </div>
       </div>
     </div>
-  </div>
+</div>
 </div>
 
   <%- include('footer') %>

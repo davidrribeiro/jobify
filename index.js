@@ -1,11 +1,13 @@
 const express = require('express')
 const app = express()
+const bodyParser = require('body-parser')
 
 const sqlite = require('sqlite')
 const dbConnection = sqlite.open('banco.sqlite', { Promise })
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', async (request, response) => {
     const db = await dbConnection    
@@ -43,6 +45,17 @@ app.get('/admin/vagas', async (req, res) =>{
 app.get('/admin/vagas/delete/:id', async(req, res) =>{
     const db = await dbConnection
     await db.run('delete from vagas where id ='+req.params.id+'')
+    res.redirect('/admin/vagas')
+})
+
+app.get('/admin/vagas/nova', async(req, res) =>{
+    res.render('admin/nova-vaga')
+})
+
+app.post('/admin/vagas/nova', async(req, res) =>{
+    const { titulo, descricao, categoria } = req.body
+    const db = await dbConnection
+    await db.run(`insert into vagas(categoria, titulo, descricao) values(${categoria}, '${titulo}', '${descricao}')`)
     res.redirect('/admin/vagas')
 })
 
