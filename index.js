@@ -30,6 +30,22 @@ app.get('/vaga/:id', async (request, response) => {
     })
 })
 
+app.get('/admin', (req, res) =>{
+    res.render('admin/home')
+})
+
+app.get('/admin/vagas', async (req, res) =>{
+    const db = await dbConnection
+    const vagas = await db.all('select * from  vagas;')
+    res.render('admin/vagas', { vagas })
+})
+
+app.get('/admin/vagas/delete/:id', async(req, res) =>{
+    const db = await dbConnection
+    await db.run('delete from vagas where id ='+req.params.id+'')
+    res.redirect('/admin/vagas')
+})
+
 const init = async() => {
     const db = await dbConnection
     await db.run('create table if not exists categorias(id INTEGER PRIMARY KEY, categoria TEXT);')
