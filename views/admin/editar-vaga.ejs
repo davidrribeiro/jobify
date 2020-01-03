@@ -4,7 +4,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Cadastrar nova vaga</h1>
+              <h1 class="m-0 text-dark">Editar vaga</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
@@ -27,14 +27,14 @@
                             <div class="form-row">                             
                               <div class="form-group col-md-12">
                                 <!-- <label for="inputText">Título da vaga</label> -->
-                                <input type="text" class="form-control" name="titulo" id="inputText" placeholder="Título da vaga">
+                                <input type="text" value="<%= vaga.titulo %>" class="form-control" name="titulo" id="inputText" placeholder="Título da vaga">
                               </div>
                               <div class="form-group col-md-12">
                                 <!-- <label for="selectCategoria">Selecione a categoria</label> -->
-                                <select class="form-control" id="selectCategoria" name="categoria">
-                                  <option value="">Selecione a categoria</option>
+                                <select class="form-control" value="<%= vaga.categoria %>" id="selectCategoria" name="categoria">
+                                  
                                   <% categorias.forEach( categoria => { %>
-                                    <option value="<%= categoria.id %>"><%= categoria.categoria %></option>
+                                    <option value="<%= categoria.id %>" <% if(categoria.id ==vaga.categoria) { %>selected<% }%>><%= categoria.categoria %></option>
                                   <% }) %>
                                  
                                   
@@ -42,7 +42,7 @@
                               </div>
                               <div class="form-group col-md-12">
                                 <!-- <label for="textDescricao">Descreva a vaga</label> -->
-                                <textarea class="form-control" name="descricao" id="textDescricao" rows="3" placeholder="Descreva a vaga aqui..."></textarea>
+                                <textarea class="form-control" name="descricao" id="textDescricao" rows="3" placeholder="Descreva a vaga aqui..."><%= vaga.descricao %></textarea>
                               </div>                             
                               
                             </div>

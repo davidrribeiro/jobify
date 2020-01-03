@@ -19,7 +19,7 @@
 <div class="content">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-8">
           <div class="card">          
             <div class="card-body">
               <div class="d-flex">
@@ -45,7 +45,8 @@
                                     <%- vaga.descricao %>
                                 </td>
                                 <td>
-                                    <a href="/admin/vagas/delete/<%- vaga.id %>" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                                  <a href="/admin/vagas/editar/<%- vaga.id %>" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                                    <a href="/admin/vagas/delete/<%- vaga.id %>" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
                                 </td>
                               </tr>
                               <% }) %>
@@ -58,7 +59,7 @@
             </div>
           </div>
         </div> 
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <div class="card">          
                 <div class="card-body">
                   <div class="d-flex">
