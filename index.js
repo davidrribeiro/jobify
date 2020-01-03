@@ -9,14 +9,16 @@ const dbConnection = sqlite.open(path.resolve(__dirname, 'banco.sqlite'), { Prom
 
 const port = process.env.PORT || 3000
 
-app.use('/admin', (req, res, next) => {
-    if(req.hostname === 'localhost') {
-        next()
-    }else{
-        res.send('Área restrita')
-    }
+//Acessa o admin somente do localhost
+
+// app.use('/admin', (req, res, next) => {
+//     if(req.hostname === 'localhost') {
+//         next()
+//     }else{
+//         res.send('Área restrita')
+//     }
     
-})
+// })
 
 app.set('views', path.join(__dirname, 'views'))
 
