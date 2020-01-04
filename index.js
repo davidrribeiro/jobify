@@ -71,16 +71,17 @@ app.get('/admin/categorias', async (req, res) =>{
 
 //form para nova categoria
 app.get('/admin/categorias/nova', async(req, res) =>{
-    const db = await dbConnection
-    const categorias = await db.all('select * from categorias') 
-    res.render('/admin/nova-categoria', { categorias })
+    //const db = await dbConnection
+    //const categorias = await db.all('select * from categorias') 
+    res.render('admin/nova-categoria')
+    //res.send('olá')
 })
 
 //Posta no banco nova categoria
 app.post('/admin/categorias/nova', async(req, res) =>{
     const { categoria } = req.body
     const db = await dbConnection
-    await db.run(`insert into categorias(categoria) values(${categoria}`)
+    await db.run(`insert into categorias(categoria) values('${categoria}')`)
     res.redirect('/admin/categorias')
 })
 
@@ -95,6 +96,13 @@ app.get('/admin/vagas/delete/:id', async(req, res) =>{
     const db = await dbConnection
     await db.run('delete from vagas where id ='+req.params.id+'')
     res.redirect('/admin/vagas')
+})
+
+//Delete categoria
+app.get('/admin/categorias/delete/:id', async(req, res) =>{
+    const db = await dbConnection
+    await db.run('delete from categorias where id ='+req.params.id+'')
+    res.redirect('/admin/categorias')
 })
 
 //Cria nova vaga
@@ -120,6 +128,23 @@ app.post('/admin/vagas/editar/:id', async(req, res) =>{
     const db = await dbConnection
     await db.run(`update vagas set categoria = ${categoria} , titulo ='${titulo}' , descricao ='${descricao}' where id = ${id}`)
     res.redirect('/admin/vagas')
+})
+
+//Edita categoria
+app.get('/admin/categorias/editar/:id', async(req, res) =>{
+    const db = await dbConnection
+    const categorias = await db.all('select * from categorias')
+    const nomeCat = await db.get('select * from categorias where id ='+req.params.id)
+    res.render('admin/editar-categoria', { categorias, nomeCat })
+
+})
+
+app.post('/admin/categorias/editar/:id', async(req, res) =>{
+    const { categoria } = req.body
+    const { id } = req.params
+    const db = await dbConnection
+    await db.run(`update categorias set categoria = ${categoria} where id = ${id}`)
+    res.redirect('/admin/categorias')
 })
 
 const init = async() => {
