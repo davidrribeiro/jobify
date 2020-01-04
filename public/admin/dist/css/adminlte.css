@@ -48,6 +48,13 @@
   box-sizing: border-box;
 }
 
+.logo-admin{
+  max-width: 120px;
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+
 html {
   font-family: sans-serif;
   line-height: 1.15;
