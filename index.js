@@ -40,6 +40,7 @@ app.get('/', async (request, response) => {
         categorias
     })
 })
+//vaga
 app.get('/vaga/:id', async (request, response) => {   
     const db = await dbConnection
     const vaga = await db.get('select * from vagas where id =' + request.params.id)
@@ -49,20 +50,38 @@ app.get('/vaga/:id', async (request, response) => {
     })
 })
 
+//Acessa o admin
 app.get('/admin', (req, res) =>{
     res.render('admin/home')
 })
 
+//Exibe as vagas
 app.get('/admin/vagas', async (req, res) =>{
     const db = await dbConnection
     const vagas = await db.all('select * from  vagas;')
     res.render('admin/vagas', { vagas })
 })
 
-app.get('/admin/vagas/delete/:id', async(req, res) =>{
+//Exibe as categorias
+app.get('/admin/categorias', async (req, res) =>{
     const db = await dbConnection
-    await db.run('delete from vagas where id ='+req.params.id+'')
-    res.redirect('/admin/vagas')
+    const categorias = await db.all('select * from  categorias;')
+    res.render('admin/categorias', { categorias })
+})
+
+//form para nova categoria
+app.get('/admin/categorias/nova', async(req, res) =>{
+    const db = await dbConnection
+    const categorias = await db.all('select * from categorias') 
+    res.render('/admin/nova-categoria', { categorias })
+})
+
+//Posta no banco nova categoria
+app.post('/admin/categorias/nova', async(req, res) =>{
+    const { categoria } = req.body
+    const db = await dbConnection
+    await db.run(`insert into categorias(categoria) values(${categoria}`)
+    res.redirect('/admin/categorias')
 })
 
 app.get('/admin/vagas/nova', async(req, res) =>{
@@ -71,12 +90,22 @@ app.get('/admin/vagas/nova', async(req, res) =>{
     res.render('admin/nova-vaga', { categorias })
 })
 
+//Delete vagas
+app.get('/admin/vagas/delete/:id', async(req, res) =>{
+    const db = await dbConnection
+    await db.run('delete from vagas where id ='+req.params.id+'')
+    res.redirect('/admin/vagas')
+})
+
+//Cria nova vaga
 app.post('/admin/vagas/nova', async(req, res) =>{
     const { titulo, descricao, categoria } = req.body
     const db = await dbConnection
     await db.run(`insert into vagas(categoria, titulo, descricao) values(${categoria}, '${titulo}', '${descricao}')`)
     res.redirect('/admin/vagas')
 })
+
+//Edita vaga
 app.get('/admin/vagas/editar/:id', async(req, res) =>{
     const db = await dbConnection
     const categorias = await db.all('select * from categorias')

@@ -1,0 +1,82 @@
+<%- include ('header') %>
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Categorias disponíveis</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Categorias</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="d-flex flex-column">
+                                    <div class="card-body table-responsive p-0">
+                                        <table class="table table-striped table-valign-middle">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Nome</th>
+                                                    <th>Ação</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% categorias.forEach( categoria => { %>
+                                                <tr>
+                                                    <td>
+                                                        <%- categoria.id %>
+                                                    </td>
+                                                    <td><%- categoria.categoria %></td>
+                                                    <td>
+                                                        <a href="/admin/categorias/editar/<%- categoria.id %>"
+                                                            class="btn btn-primary btn-sm"><i
+                                                                class="fas fa-edit"></i></a>
+                                                        <a href="/admin/categorias/delete/<%- categoria.id %>"
+                                                            class="btn btn-danger btn-sm"><i
+                                                                class="far fa-trash-alt"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <% }) %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="d-flex flex-column">
+                                    <p>Para adicionar nova categoria no sistema, clique no botão
+                                        abaixo para preencher o formulário :)</p>
+                                    <a href="/admin/categorias/nova" class="btn btn-success btn-lg btn-block">
+                                        <i class="fas fa-plus-square"></i> Adicionar categoria</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('footer') %>
